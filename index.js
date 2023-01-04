@@ -15,7 +15,13 @@ app.get('/message', async (req, res) => {
 			"Content-Type": "application/json"
 		},
 		body: JSON.stringify({
-			"content": "hi",
+			"content": null,
+			"embeds": [
+				{
+					"description": "Click On the Button below to Gain Access To the Server",
+					"color": 3092790
+				}
+			],
 			"components": [
 				{
 					"type": 1,
@@ -27,7 +33,7 @@ app.get('/message', async (req, res) => {
 							"custom_id": "verify",
 							"emoji": {
 								"id": null,
-								"name": "✅"
+								"name": "🔐"
 							}
 						}
 					]
@@ -35,8 +41,7 @@ app.get('/message', async (req, res) => {
 			]
 		})
 	})
-	console.log(response)
-	res.sendStatus(200)
+	res.send('Sent the message')
 })
 
 app.get('/interactions', (req, res) => {
