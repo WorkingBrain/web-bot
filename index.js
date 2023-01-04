@@ -35,6 +35,7 @@ app.get('/message', async (req, res) => {
 			]
 		})
 	})
+	res.sendStatus(200)
 })
 
 app.get('/interactions', (req, res) => {
