@@ -125,7 +125,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (re
 		} else if (interaction.data.custom_id === `age`) {
 			var role
 
-			if(interaction.data.value === `adult`) {
+			if(interaction.data.value[0] === `adult`) {
 				role = 1060280489895788645
 			} else role = 1060280539732525159
 
