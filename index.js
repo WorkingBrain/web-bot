@@ -83,6 +83,8 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (re
 					content: "You Can Now Access the Server Channels."
 				})
 			})
+			
+			res.sendStatus(200)
 		}
 	}
 })
