@@ -125,7 +125,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (re
 		} else if (interaction.data.custom_id === `age`) {
 			var role
 
-			if(interaction.data.value[0] === `adult`) {
+			if(interaction.data.values[0] === `adult`) {
 				role = 1060280489895788645
 			} else role = 1060280539732525159
 
@@ -134,6 +134,17 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (re
 				headers: {
 					"Authorization": `Bot ${process.env.token}`
 				}
+			})
+			
+			await fetch(`https://discord.com/api/webhooks/${interaction.application_id}/${interaction.token}/messages/@original`, {
+				method: "PATCH",
+				headers: {
+					"Authorization": `Bot ${process.env.token}`,
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					content: "Updated the roles"
+				})
 			})
 		}
 		res.sendStatus(200)
