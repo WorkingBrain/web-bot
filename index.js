@@ -68,8 +68,8 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), (req, res
 				body: JSON.stringify({
 					content: "Updated Message"
 				})
-			}, 1000)
-		})
+			})
+		}, 1000)
 	}
 })
 
