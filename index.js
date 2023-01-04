@@ -52,7 +52,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), (req, res
 	if(interaction.type === 3) {
 		if (interaction.data.custom_id === `verify`) {
 			res.send({
-				type: 5,
+				type: 4,
 				data: {
 					content: "Clicked"
 				}
