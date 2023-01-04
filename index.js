@@ -51,23 +51,32 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (re
 
 	if(interaction.type === 3) {
 		if (interaction.data.custom_id === `verify`) {
+
 			res.send({
 				type: 5,
 				data: {
 					flags: 64
 				}
 			})
-		}
-		await fetch(`https://discord.com/api/webhooks/${interaction.application_id}/${interaction.token}/messages/@original`, {
-				method: "PATCH",
+
+			await fetch(`https://discord.com/api/guilds/${interaction.guild_id}/members/${interaction.member.user.id}/roles/1060205348574724196`, {
+				method: "PUT",
 				headers: {
-					"Authorization": `Bot ${process.env.token}`,
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify({
-					content: "Updated Message"
-				})
+					"Authorization": `Bot ${process.env.token}`
+				}
 			})
+
+			await fetch(`https://discord.com/api/webhooks/${interaction.application_id}/${interaction.token}/messages/@original`, {
+					method: "PATCH",
+					headers: {
+						"Authorization": `Bot ${process.env.token}`,
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({
+						content: "You Can Now Access the Server Channels."
+					})
+				})
+		}
 	}
 })
 
