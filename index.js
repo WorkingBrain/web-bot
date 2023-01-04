@@ -26,7 +26,7 @@ app.get('/message', async (req, res) => {
 							"style": 1,
 							"custom_id": "verify",
 							"emoji": {
-								"id": "null",
+								"id": null,
 								"name": "✅"
 							}
 						}
