@@ -50,7 +50,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), (req, res
 	console.log(interaction)
 
 	if(interaction.type === 3) {
-		if (interaction.message.components.components.custom_id === `verify`) {
+		if (interaction.data.custom_id === `verify`) {
 			res.send(JSON.stringify({
 				"type": 5,
 				"data": {
