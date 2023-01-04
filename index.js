@@ -54,7 +54,8 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), (req, res
 			res.send({
 				type: 4,
 				data: {
-					content: "Clicked"
+					content: "Clicked",
+					flags: 64
 				}
 			})
 		}
