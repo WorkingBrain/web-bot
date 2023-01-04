@@ -85,12 +85,10 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (re
 				})
 			})
 			
+			res.sendStatus(200)
+			
 		} else if (interaction.data.custom_id === `age`) {
-			var role
-
-			if(interaction.data.values[0] === `adult`) {
-				role = 1060280489895788645
-			} else role = 1060280539732525159
+			const role = interaction.data.values[0]
 			
 			console.log(role)
 
@@ -113,8 +111,9 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (re
 					content: "Updated the roles"
 				})
 			})
+			
+			res.sendStatus(200)
 		}
-		res.sendStatus(200)
 	}
 })
 
