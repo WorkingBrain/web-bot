@@ -6,7 +6,11 @@ app.get('/', (req, res) => {
 	res.sendStatus(200)
 })
 
-app.get('/interactions', (req, res) => {
+app.post('/api', (req, res) => {
+	res.sendStatus(200)
+})
+
+app.post('/api/interactions', (req, res) => {
 	res.sendStatus(200)
 })
 
