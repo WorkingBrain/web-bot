@@ -47,6 +47,7 @@ app.get('/message', async (req, res) => {
 
 app.post('/interactions', verifyKeyMiddleware(process.env.public_key), (req, res) => {
 	const interaction = req.body
+	console.log(interaction)
 
 	if(interaction.type === 3) {
 		if (interaction.message.components.components.custom_id === `verify`) {
