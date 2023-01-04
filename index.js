@@ -1,5 +1,6 @@
 const express = require('express')
 const fetch = require('node-fetch')
+const { verifyKeyMiddleware } = require('discord-interactions')
 
 const app = express()
 
@@ -44,8 +45,7 @@ app.get('/message', async (req, res) => {
 	res.send('Sent the message')
 })
 
-app.post('/interactions', (req, res) => {
-	console.log(req)
+app.post('/interactions', verifyKeyMiddleware(process.env.public_key), (req, res) => {
 	const interaction = req.body
 
 	if(interaction.type === 3) {
