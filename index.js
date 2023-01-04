@@ -45,6 +45,7 @@ app.get('/message', async (req, res) => {
 })
 
 app.post('/interactions', (req, res) => {
+	console.log(req)
 	const interaction = req.body
 
 	if(interaction.type === 3) {
