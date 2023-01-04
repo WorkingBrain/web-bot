@@ -45,7 +45,7 @@ app.get('/message', async (req, res) => {
 	res.send('Sent the message')
 })
 
-app.post('/interactions', verifyKeyMiddleware(process.env.public_key), (req, res) => {
+app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (req, res) => {
 	const interaction = req.body
 	console.log(interaction)
 
