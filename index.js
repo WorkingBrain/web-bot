@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/message', async (req, res) => {
-	const response = await fetch('https://discord.com/api/v9/channels/1036555705366360117/messages', {
+	const response = await fetch('https://discord.com/api/channels/1036555705366360117/messages', {
 		method: "POST",
 		headers: {
 			"Authorization": `${process.env.token}`,
