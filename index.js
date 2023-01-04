@@ -44,8 +44,20 @@ app.get('/message', async (req, res) => {
 	res.send('Sent the message')
 })
 
-app.get('/interactions', (req, res) => {
-	res.sendStatus(200)
+app.post('/interactions', (req, res) => {
+	const interaction = req.body
+
+	if(interaction.type === 3) {
+		if (interaction.message.components.components.custom_id === `verify`) {
+			res.send(JSON.stringify({
+				"type": 5,
+				"data": {
+					"content": "Clicked",
+					"flags": 1 << 6
+				}
+			}))
+		}
+	}
 })
 
 app.listen("3000", () => console.log(`listening on port 3000`))
