@@ -11,7 +11,7 @@ app.get('/message', async (req, res) => {
 	await fetch('https://discord.com/api/v9/channels/1036555705366360117', {
 		method: "POST",
 		headers: {
-			"Authorization": "MTA2MDE0NDI2MTIyMTMzMDk1NA.Gg5e_K.zMahicbscxNJ2xBsH3hZj8cZGzo716CDNLioLo",
+			"Authorization": `${process.env.token}`,
 			"Content-Type": "application/json"
 		},
 		body: JSON.stringify({
