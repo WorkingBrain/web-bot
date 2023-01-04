@@ -52,13 +52,24 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), (req, res
 	if(interaction.type === 3) {
 		if (interaction.data.custom_id === `verify`) {
 			res.send({
-				type: 4,
+				type: 5,
 				data: {
-					content: "Clicked",
 					flags: 64
 				}
 			})
 		}
+		setTimeout(async() => {
+			await fetch(`https://discord.com/api/webhooks/${interaction.application_id}/${interaction.token}/messages/@original`, {
+				method: "PATCH",
+				headers: {
+					"Authorization": `Bot ${process.env.token}`,
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					content: "Updated Message"
+				})
+			}, 1000)
+		})
 	}
 })
 
