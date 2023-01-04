@@ -45,46 +45,9 @@ app.get('/message', async (req, res) => {
 	res.send('Sent the message')
 })
 
-app.get('/message', async (req, res) => {
-	const response = await fetch('https://discord.com/api/channels/1036555705366360117/messages', {
-		method: "POST",
-		headers: {
-			"Authorization": `Bot ${process.env.token}`,
-			"Content-Type": "application/json"
-		},
-		body: JSON.stringify({
-			"content": null,
-			"embeds": [
-				{
-					"description": "Click On the Button below to Gain Access To the Server",
-					"color": 3092790
-				}
-			],
-			"components": [
-				{
-					"type": 1,
-					"components": [
-						{
-							"type": 6,
-							"label": "Verify",
-							"style": 1,
-							"custom_id": "verify",
-							"emoji": {
-								"id": null,
-								"name": "🔐"
-							}
-						}
-					]
-				}
-			]
-		})
-	})
-	res.send('Sent the message')
-})
-
 app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (req, res) => {
 	const interaction = req.body
-	console.log(interaction)
+	//console.log(interaction)
 
 	if(interaction.type === 3) {
 
@@ -128,13 +91,17 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (re
 			if(interaction.data.values[0] === `adult`) {
 				role = 1060280489895788645
 			} else role = 1060280539732525159
+			
+			console.log(role)
 
-			await fetch(`https://discord.com/api/guilds/${interaction.guild_id}/members/${interaction.member.user.id}/roles/${role}`, {
+			const response = await fetch(`https://discord.com/api/guilds/${interaction.guild_id}/members/${interaction.member.user.id}/roles/${role}`, {
 				method: "PUT",
 				headers: {
 					"Authorization": `Bot ${process.env.token}`
 				}
 			})
+			
+			console.log(response)
 			
 			await fetch(`https://discord.com/api/webhooks/${interaction.application_id}/${interaction.token}/messages/@original`, {
 				method: "PATCH",
