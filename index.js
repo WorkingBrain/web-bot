@@ -2,6 +2,8 @@ const express = require('express')
 const fetch = require('node-fetch')
 const { verifyKeyMiddleware } = require('discord-interactions')
 
+const { role_update } = require('./role-update')
+
 const app = express()
 
 app.get('/', (req, res) => {
@@ -47,7 +49,7 @@ app.get('/message', async (req, res) => {
 
 app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (req, res) => {
 	const interaction = req.body
-	console.log(interaction.message.components)
+	//console.log(interaction)
 
 	if(interaction.type === 3) {
 
@@ -88,36 +90,9 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (re
 			res.sendStatus(200)
 			
 		} else {
-			const selected = interaction.data.values
 			
-			let options = []
+			const validation = await role_update(interaction)
 
-			interaction.message.components[0].components[0].options.forEach(element => options.push(element.value))
-
-			const notselected = options.filter(option => !selected.includes(option))
-
-			if(notselected.length !== 0) {
-				notselected.forEach(async (role) => {
-					await fetch(`https://discord.com/api/guilds/${interaction.guild_id}/members/${interaction.member.user.id}/roles/${role}`, {
-						method: "DELETE",
-						headers: {
-							"Authorization": `Bot ${process.env.token}`
-						}
-					})
-				})
-			}
-
-			if(selected.length !== 0) {
-				selected.forEach(async (role) => {
-					await fetch(`https://discord.com/api/guilds/${interaction.guild_id}/members/${interaction.member.user.id}/roles/${role}`, {
-						method: "PUT",
-						headers: {
-							"Authorization": `Bot ${process.env.token}`
-						}
-					})
-				})
-			}
-			
 			await fetch(`https://discord.com/api/webhooks/${interaction.application_id}/${interaction.token}/messages/@original`, {
 				method: "PATCH",
 				headers: {
