@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/message', async (req, res) => {
-	const response = await fetch('https://discord.com/api/channels/1036555705366360117/messages', {
+	const response = await fetch('https://discord.com/api/channels/1011698602562834502/messages', {
 		method: "POST",
 		headers: {
 			"Authorization": `Bot ${process.env.token}`,
@@ -69,7 +69,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (re
 
 		if (interaction.data.custom_id === `verify`) {
 
-			await fetch(`https://discord.com/api/guilds/${interaction.guild_id}/members/${interaction.member.user.id}/roles/1060205348574724196`, {
+			await fetch(`https://discord.com/api/guilds/${interaction.guild_id}/members/${interaction.member.user.id}/roles/1011635113928429651`, {
 				method: "PUT",
 				headers: {
 					"Authorization": `Bot ${process.env.token}`
