@@ -30,7 +30,7 @@ app.get('/message', async (req, res) => {
 					"type": 1,
 					"components": [
 						{
-							"type": 2,
+							"type": 1,
 							"label": "Verify",
 							"style": 1,
 							"custom_id": "verify",
