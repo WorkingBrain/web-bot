@@ -13,7 +13,7 @@ async function role_update(interaction) {
 
   if (notselected.length !== 0) {
     notselected.forEach(async (role) => {
-      await fetch(
+      const response = await fetch(
         `https://discord.com/api/guilds/${interaction.guild_id}/members/${interaction.member.user.id}/roles/${role}`,
         {
           method: "DELETE",
@@ -22,6 +22,7 @@ async function role_update(interaction) {
           },
         }
       );
+      console.log(response.data)
     });
   }
 
@@ -36,6 +37,7 @@ async function role_update(interaction) {
           },
         }
       );
+      console.log(response.data)
     });
   }
 
