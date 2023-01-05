@@ -32,7 +32,7 @@ app.get('/message', async (req, res) => {
 						{
 							"type": 2,
 							"label": "Verify",
-							"style": 2,
+							"style": 3,
 							"custom_id": "verify",
 							"emoji": {
 								"id": null,
