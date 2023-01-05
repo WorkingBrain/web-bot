@@ -76,7 +76,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (re
 				}
 			})
 			
-			console.log(response.data)
+			console.log(response)
 
 			await fetch(`https://discord.com/api/webhooks/${interaction.application_id}/${interaction.token}/messages/@original`, {
 				method: "PATCH",
