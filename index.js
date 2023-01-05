@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/message', async (req, res) => {
-	const response = await fetch('https://discord.com/api/channels/1011698602562834502/messages', {
+	const response = await fetch('https://discord.com/api/channels/1036692152975106168/messages', {
 		method: "POST",
 		headers: {
 			"Authorization": `Bot ${process.env.token}`,
@@ -21,7 +21,7 @@ app.get('/message', async (req, res) => {
 			"content": null,
 			"embeds": [
 				{
-					"description": "Click On the Button below to Gain Access To the Server",
+					"description": "> **Click On the Button below to Gain Access To the Server**",
 					"color": 3092790
 				}
 			],
