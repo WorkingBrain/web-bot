@@ -69,12 +69,14 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (re
 
 		if (interaction.data.custom_id === `verify`) {
 
-			await fetch(`https://discord.com/api/guilds/${interaction.guild_id}/members/${interaction.member.user.id}/roles/1011635113928429651`, {
+			const response = await fetch(`https://discord.com/api/guilds/${interaction.guild_id}/members/${interaction.member.user.id}/roles/1011635113928429651`, {
 				method: "PUT",
 				headers: {
 					"Authorization": `Bot ${process.env.token}`
 				}
 			})
+			
+			console.log(response.data)
 
 			await fetch(`https://discord.com/api/webhooks/${interaction.application_id}/${interaction.token}/messages/@original`, {
 				method: "PATCH",
