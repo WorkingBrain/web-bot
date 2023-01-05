@@ -92,7 +92,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (re
 			
 			let options = []
 
-			interaction.message.components.components.options.forEach(element => options.push(element.value))
+			interaction.message.components[0].components[0].options.forEach(element => options.push(element.value))
 
 			const notselected = options.filter(option => !selected.includes(option))
 
