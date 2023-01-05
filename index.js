@@ -30,9 +30,9 @@ app.get('/message', async (req, res) => {
 					"type": 1,
 					"components": [
 						{
-							"type": 1,
+							"type": 2,
 							"label": "Verify",
-							"style": 1,
+							"style": 2,
 							"custom_id": "verify",
 							"emoji": {
 								"id": null,
