@@ -87,19 +87,36 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (re
 			
 			res.sendStatus(200)
 			
-		} else if (interaction.data.custom_id === `age`) {
-			const role = interaction.data.values[0]
+		} else {
+			const selected = interaction.data.values
 			
-			console.log(role)
+			let options = []
 
-			const response = await fetch(`https://discord.com/api/guilds/${interaction.guild_id}/members/${interaction.member.user.id}/roles/${role}`, {
-				method: "PUT",
-				headers: {
-					"Authorization": `Bot ${process.env.token}`
-				}
-			})
-			
-			console.log(response)
+			interaction.message.components.components.options.forEach(element => options.push(element.value))
+
+			const notselected = options.filter(option => !selected.includes(option))
+
+			if(notselected.length !== 0) {
+				notselected.forEach(async (role) => {
+					await fetch(`https://discord.com/api/guilds/${interaction.guild_id}/members/${interaction.member.user.id}/roles/${role}`, {
+						method: "DELETE",
+						headers: {
+							"Authorization": `Bot ${process.env.token}`
+						}
+					})
+				})
+			}
+
+			if(selected.length !== 0) {
+				selected.forEach(async (role) => {
+					await fetch(`https://discord.com/api/guilds/${interaction.guild_id}/members/${interaction.member.user.id}/roles/${role}`, {
+						method: "PUT",
+						headers: {
+							"Authorization": `Bot ${process.env.token}`
+						}
+					})
+				})
+			}
 			
 			await fetch(`https://discord.com/api/webhooks/${interaction.application_id}/${interaction.token}/messages/@original`, {
 				method: "PATCH",
@@ -108,7 +125,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (re
 					"Content-Type": "application/json"
 				},
 				body: JSON.stringify({
-					content: "Updated the roles"
+					content: "**Updated Your Roles.**"
 				})
 			})
 			
