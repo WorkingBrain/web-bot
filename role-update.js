@@ -28,7 +28,7 @@ async function role_update(interaction) {
 
   if (selected.length !== 0) {
     selected.forEach(async (role) => {
-      await fetch(
+      const response = await fetch(
         `https://discord.com/api/guilds/${interaction.guild_id}/members/${interaction.member.user.id}/roles/${role}`,
         {
           method: "PUT",
@@ -37,7 +37,7 @@ async function role_update(interaction) {
           },
         }
       );
-      console.log(response.data)
+      console.log(response)
     });
   }
 
