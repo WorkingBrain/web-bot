@@ -89,6 +89,23 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (re
 				})
 			})
 			
+			await fetch(`https://discord.com/api/channels/1011612151871443006/messages`, {
+				method: "POST",
+				headers: {
+					"Authorization": `Bot ${process.env.token}`,
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					content: `Welcome <@${interaction.member.user.id}>.`,
+					embeds: [
+						{
+							description: `***\`\`\`diff\n+Daily Intraday setups :\`\`\`***\n<#1053298075994697789>\n***\`\`\`diff\n+Learn Stock Market :\`\`\`***\n<#1011953745740963890>\n***\`\`\`diff\n+Swing Trades :\`\`\`***\n<#1011655226744381470>\n***\`\`\`diff\n+Market Analysis :\`\`\`***\n<#1053298242948976681>\n
+`
+						}
+					]
+				})
+			})
+			
 			res.sendStatus(200)
 			
 		} else {
