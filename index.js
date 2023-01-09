@@ -99,7 +99,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (re
 					content: `Welcome <@${interaction.member.user.id}>.`,
 					embeds: [
 						{
-							description: `Daily Intraday setups : <#1053298075994697789>\nLearn stock market - <#1011953745740963890>\+Swing Trades - <#1011655226744381470>\nMarket Analysis - <#1053298242948976681>`,
+							description: `Daily Intraday setups : <#1053298075994697789>\nLearn stock market - <#1011953745740963890>\nSwing Trades - <#1011655226744381470>\nMarket Analysis - <#1053298242948976681>`,
 							color: 3092790
 						}
 					]
