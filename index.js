@@ -99,8 +99,8 @@ app.post('/interactions', verifyKeyMiddleware(process.env.public_key), async (re
 					content: `Welcome <@${interaction.member.user.id}>.`,
 					embeds: [
 						{
-							description: `***\`\`\`diff\n+Daily Intraday setups :\`\`\`***\n<#1053298075994697789>\n***\`\`\`diff\n+Learn Stock Market :\`\`\`***\n<#1011953745740963890>\n***\`\`\`diff\n+Swing Trades :\`\`\`***\n<#1011655226744381470>\n***\`\`\`diff\n+Market Analysis :\`\`\`***\n<#1053298242948976681>\n
-`
+							description: `Daily Intraday setups : <#1053298075994697789>\nLearn stock market - <#1011953745740963890>\+Swing Trades - <#1011655226744381470>\nMarket Analysis - <#1053298242948976681>`,
+							color: 3092790
 						}
 					]
 				})
